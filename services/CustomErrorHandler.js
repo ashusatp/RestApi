@@ -14,6 +14,16 @@ class CustomErrorHandler extends Error{
         let status = 401;
         return new CustomErrorHandler(status,message);
     }
+
+    static unAuthorized(message = 'unAuthorized') {
+        let status = 401;
+        return new CustomErrorHandler(status,message);
+    }
+
+    static notFound(message = '404 Not Found') {
+        let status = 404;
+        return new CustomErrorHandler(status,message);
+    }
 }
 
 export default CustomErrorHandler;
