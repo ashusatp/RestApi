@@ -24,6 +24,11 @@ class CustomErrorHandler extends Error{
         let status = 404;
         return new CustomErrorHandler(status,message);
     }
+
+    static serverError(message = 'Internal server Error') {
+        let status = 500;
+        return new CustomErrorHandler(status,message);
+    }
 }
 
 export default CustomErrorHandler;

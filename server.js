@@ -2,6 +2,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import {APP_PORT, DB_URL} from './config' 
+import path from 'path'
 import errorHandler from './middlewares/errorHandler';
 import routes from './routes'
 const app = express();
@@ -14,7 +15,8 @@ db.once('open',()=>{
     console.log('DB connected...');
 })
 
-
+global.appRoot = path.resolve(__dirname);
+app.use(express.urlencoded({extended:false}));
 app.use(express.json())
 app.use('/api',routes)
 
