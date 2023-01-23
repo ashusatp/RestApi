@@ -151,8 +151,10 @@ const productController = {
         return next(new Error("Nothing to delete"));
       }
       // image delete
-      const first = document.image.split("uploads");
-      let imagePath = `uploads${first[1]}`;
+      // const first = document.image.split("uploads");
+      // let imagePath = `uploads${first[1]}`;
+      // or
+      const imagePath = document._doc.image;
 
       fs.unlink(`${appRoot}/${imagePath}`, (err) => {
         if (err) {
@@ -169,13 +171,24 @@ const productController = {
     let documents;
     //pagination (mongoose pagination)
     try {
-      documents = await Product.find();
+      documents = await Product.find().select('-updatedAt -__v').sort({_id: -1});
     } catch (err) {
       return next(CustomErrorHandler.serverError());
     }
 
     return res.json(documents);
   },
+
+  async show(req,res,next){
+    let data;
+    const id = req.params.id;
+    try{
+      data = await Product.findById(id).select('-updatedAt -__v');
+    }catch(err){
+      return next(CustomErrorHandler.serverError());
+    }
+    res.json(data);
+  }
 };
 
 export default productController;

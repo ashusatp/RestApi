@@ -21,11 +21,10 @@ const productSchema = new Schema({
         required: true,
         get: (image)=>{
             // http://localhost:5000/uploads/1674366988775-358119162.png
-
             return `${APP_URL}/${image}`
         }
     }
 
-},{timestamps:true, toJSON: {getters: true}});
+},{timestamps:true, toJSON: {getters: true}, id: false});
 
 export default mongoose.model('Product', productSchema);

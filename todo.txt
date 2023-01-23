@@ -5,6 +5,6 @@
 [+]Logout the user
 [+]Add new product
 [+]Update a product
-[ ]Get all products
-[ ]Get Single product
+[+]Get all products
+[+]Get Single product
 [+]Delete a product
